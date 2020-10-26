@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TESTE API</title>
+        <script src="https://algorithmia.com/v1/clients/js/algorithmia-0.2.1.js"></script>
+        <script>
+            function emoji(){
+                var text = document.querySelector("#text").value;
+                var input = {"text":text};
+                    Algorithmia.client("simnyEvV0MtbPZRp8FkDTXLgL6s1")
+                    .algo("jhurliman/Text2Emoji/0.1.1?timeout=300") // timeout is optional
+                    .pipe(input)
+                    .then(function(output) { 
+                        var saida = output.result.text;
+                        console.log(saida) 
+                        return '<h1>{{saida}}</h1>'
+                    });
+                };    
+        </script>
+    </head>
+    <body>
+        <label>Frase (em ingles)</label>
+        <input type="text" id="text">
+        <button type="submit" onclick="emoji();">Gerar Emoji</button>
+    </body>
+</html>
